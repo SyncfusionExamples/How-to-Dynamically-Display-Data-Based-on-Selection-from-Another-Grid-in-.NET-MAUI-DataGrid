@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SfDataGridSample"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             x:Class="SfDataGridSample.MainPage">
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*"
+        ColumnDefinitions="*,*"
+        Padding="10"
+        RowSpacing="5" 
+        ColumnSpacing="20">
+
+            <Label Grid.Row="0" Grid.Column="0"
+             Text="Password Groups"
+             FontAttributes="Bold"
+             FontSize="16"
+             Margin="0,0,0,2"/>
+            <Label Grid.Row="0" Grid.Column="1"
+             Text="Passwords"
+             FontAttributes="Bold"
+             FontSize="16"
+             Margin="0,0,0,2"/>
+
+            <syncfusion:SfDataGrid Grid.Row="1" Grid.Column="0"
+                                  HorizontalOptions="Start"
+                                  WidthRequest="100"
+                                  x:Name="groupGrid"
+                                  SelectionMode="Multiple"
+                                  NavigationMode="Row"
+                                  SelectionChanged="GroupGrid_SelectionChanged"
+                                  AutoGenerateColumnsMode="None"
+                                  HeaderRowHeight="45"
+                                  HeaderGridLinesVisibility="Both" 
+                                  GridLinesVisibility="Both"
+                                  ItemsSource="{Binding Groups}">
+
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:DataGridTextColumn HeaderText="Group Name"
+                                             MappingName="Name"
+                                             Width="150"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+            <syncfusion:SfDataGrid Grid.Row="1" Grid.Column="1"
+                                  HorizontalOptions="Start"
+                                  VerticalOptions="Start"
+                                  x:Name="passwordGrid"
+                                  AutoGenerateColumnsMode="None"
+                                  VerticalScrollBarVisibility="Always"
+                                  SelectionMode="Multiple"
+                                  NavigationMode="Row"
+                                  SortingMode="Single"
+                                  BackgroundColor="White"
+                                  HeaderRowHeight="30"
+                                  Margin="20,30,20,0"
+                                  HeaderGridLinesVisibility="Both" 
+                                  GridLinesVisibility="Both"
+                                  MinimumHeightRequest="0"
+                                  IsVisible="{Binding PwVisible}"
+                                  ItemsSource="{Binding FilteredPasswords}">
+
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:DataGridTextColumn HeaderText="Title"
+                                             MappingName="Title"
+                                             Width="100"/>
+                    <syncfusion:DataGridTextColumn HeaderText="Username"
+                                             MappingName="Username"
+                                             Width="150"/>
+                    <syncfusion:DataGridTextColumn HeaderText="Password"
+                                             MappingName="Value"
+                                             Width="100"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
